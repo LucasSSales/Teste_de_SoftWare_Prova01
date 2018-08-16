@@ -34,7 +34,7 @@ public class BooleanArrayAsList extends AbstractList<Boolean>
 
     @Override
     public boolean isEmpty() { //alterado para o caso do array ser vazio
-        if(start == end && end == 0)
+        if(array.length == 0)
         	return true;
     	return false;
     }
@@ -117,6 +117,7 @@ public class BooleanArrayAsList extends AbstractList<Boolean>
 
     @Override
     public String toString() {
+    	if(array.length == 0) return "[]"; //corrigindo para arrays vazios
         StringBuilder builder = new StringBuilder(size() * 7);
         builder.append(array[start] ? "[true" : "[false");
         for (int i = start + 1; i < end; i++) {

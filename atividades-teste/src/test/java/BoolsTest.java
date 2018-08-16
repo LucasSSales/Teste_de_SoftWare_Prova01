@@ -160,6 +160,7 @@ class BoolsTest {
 	void testCheckElementIndex() {
 		assertAll(
 				() -> { assertThrows(IndexOutOfBoundsException.class, () -> {bools.checkElementIndex(-5, 10, "Array");}, "Não lançou Exception"); },
+				() -> { assertThrows(IllegalArgumentException.class, () -> {bools.checkElementIndex(1, -10, "Array");}, "Não lançou Exception"); },
 				() -> { assertThrows(IndexOutOfBoundsException.class, () -> {bools.checkElementIndex(50, 10, "Array");}, "Não lançou Exception"); },
 				() -> { assertEquals(3, bools.checkElementIndex(3, 10, "Array"));}
 				);

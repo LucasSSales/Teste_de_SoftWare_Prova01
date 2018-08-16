@@ -46,7 +46,7 @@ public class Bools {
      *     i}
      */
     public boolean contains(boolean[] array, boolean target) {
-        for (boolean value : array) {
+        for (boolean value : array) { 
             if (value == target) {
                 return true;
             }
@@ -73,7 +73,7 @@ public class Bools {
         return indexOf(array, target, 0, array.length);
     }
 
-    static int indexOf(boolean[] array, boolean target, int start, int end) {
+    int indexOf(boolean[] array, boolean target, int start, int end) {
         for (int i = start; i < end; i++) {
             if (array[i] == target) {
                 return i;
@@ -127,7 +127,7 @@ public class Bools {
         return lastIndexOf(array, target, 0, array.length);
     }
 
-    static int lastIndexOf(boolean[] array, boolean target, int start, int end) {
+    int lastIndexOf(boolean[] array, boolean target, int start, int end) {
         for (int i = end - 1; i >= start; i--) { //colocando >= para contar o 1 elemento
             if (array[i] == target) {
                 return i;

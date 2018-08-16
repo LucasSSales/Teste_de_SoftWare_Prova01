@@ -1,5 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 import br.ufal.ic.atividades.teste.BooleanArrayAsList;
@@ -22,19 +24,11 @@ class BooleanArrayAsListTest {
 	}
 
 	@Test
-	void testHashCode() {
-		System.out.println(baal1.hashCode());
-		System.out.println(baal2.hashCode());
-	}
-
-	@Test
 	void testSize() {
-		
 		assertAll(
 				() -> { assertEquals(6, baal1.size(), "tamanho incorreto"); },
-				() -> { assertEquals(3, baal2.size(), "tamanho incorreto"); }//
+				() -> { assertEquals(3, baal2.size(), "tamanho incorreto"); }
 				);
-		
 	}
 
 	@Test
@@ -118,14 +112,42 @@ class BooleanArrayAsListTest {
 
 	@Test
 	void testEqualsObject() {
+		boolean[] ba = {true, false, false, true, false, false};
 		BooleanArrayAsList bb = new BooleanArrayAsList(array, new BoolsMockObj());
+		BooleanArrayAsList bbb = new BooleanArrayAsList(ba, new BoolsMockObj());
 		assertAll(
-				() -> { assertTrue(baal1.equals(baal1), "Não sao igauis"); },
-				() -> { assertFalse(baal1.equals(baal2), "Sao igauis"); },
-				() -> { assertFalse(baal1.equals(new Object()), "Sao igauis"); },
-				() -> { assertTrue(baal1.equals(bb), "Não sao igauis"); }
+				() -> { assertTrue(baal1.equals(baal1), "Não sao iguais 1"); },
+				() -> { assertFalse(baal1.equals(baal2), "Sao iguais 1"); },
+				() -> { assertFalse(baal1.equals(new Object()), "Sao iguais 2"); },
+				() -> { assertFalse(baal1.equals(bbb), "Sao iguais 3"); },
+				() -> { assertTrue(baal1.equals(bb), "Não sao iguais 2"); }
 				);
 	}
-
+	
+	@Test
+	void testHashCode() {
+		boolean[] b1 = {false, false, true};
+		boolean[] b0 = {};
+		BooleanArrayAsList baal3 = new BooleanArrayAsList(b0, new BoolsMockObj());
+		assertAll(
+				() -> { assertEquals(Arrays.hashCode(array), baal1.hashCode(), "valores diferentes 1"); },
+				() -> { assertEquals(Arrays.hashCode(b1), baal2.hashCode(), "valores diferentes 2"); },
+				() -> { assertEquals(Arrays.hashCode(b0), baal3.hashCode(), "valores diferentes 3"); }
+				);
+	}
+	
+	@Test
+	void testToString() {
+		String oraculo = "[true, false, false, true, false, true]";
+		String oraculo2 = "[false, false, true]";
+		String oraculo3 = "[]";
+		boolean[] b = {};
+		BooleanArrayAsList baal3 = new BooleanArrayAsList(b, new BoolsMockObj());
+		assertAll(
+				() -> {assertEquals(oraculo, baal1.toString(), "a string está diferente 1");},
+				() -> {assertEquals(oraculo2, baal2.toString(), "a string está diferente 2");},
+				() -> {assertEquals(oraculo3, baal3.toString(), "a string está diferente 3");}
+				);
+	}
 
 }
